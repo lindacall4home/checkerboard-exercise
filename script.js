@@ -1,21 +1,14 @@
-var getSquareColor = function(row, col){
-  if(row % 2 > 0){
-    if(col % 2 > 0){
-      return '#000000';
-    }
-    else{
-      return '#FF0000';
-    }
+var getRandomSquareColor = function(){
+  var hexValues = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'];
+  var hexColor = '#';
+  for (var i = 0; i < 6; i++){
+    var randomNum = Math.floor((Math.random() * 16));
+    hexColor = hexColor + hexValues[randomNum];
   }
-  else{
-    if(col % 2 > 0){
-      return 'red';
-    }
-    else{
-      return 'black';
-    }
-  }
+  return hexColor;
 };
+
+
 
 
 for (var row = 1; row < 10; row++){
@@ -24,7 +17,7 @@ for (var row = 1; row < 10; row++){
     square.style.width = '11.1%';
     square.style.paddingBottom = '11.1%';
     square.style.float = 'left';
-    square.style.backgroundColor = getSquareColor(row, col);
+    square.style.backgroundColor = getRandomSquareColor();
     document.body.appendChild(square);
   }
 }
