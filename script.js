@@ -1,18 +1,29 @@
-var getSquareColor = function(row, col){
+var buildRgbaColorString = function(red, green, blue, alpha){
+  return 'rgba(' + red + ', ' + green + ', ' + blue + ', ' + alpha + ')';
+};
+
+var getGradientColor = function(row, col){
+  var red = 232;
+  var green = 100;
+  var blue = 50;
+  var alpha = 0.8;
+  var greenOffset = (row * 3) + (col * 3);
+  var alphaOffset = (row * 0.01) + (col * 0.01);
+
   if(row % 2 > 0){
     if(col % 2 > 0){
-      return '#000000';
+      return buildRgbaColorString(red, green - greenOffset, blue, alpha + alphaOffset);
     }
     else{
-      return '#FF0000';
+      return buildRgbaColorString(red, green + greenOffset, blue, alpha + alphaOffset);
     }
   }
   else{
     if(col % 2 > 0){
-      return 'red';
+      return buildRgbaColorString(red, green + greenOffset, blue, alpha + alphaOffset);
     }
     else{
-      return 'black';
+      return buildRgbaColorString(red, green - greenOffset, blue, alpha + alphaOffset);
     }
   }
 };
@@ -24,7 +35,7 @@ for (var row = 1; row < 10; row++){
     square.style.width = '11.1%';
     square.style.paddingBottom = '11.1%';
     square.style.float = 'left';
-    square.style.backgroundColor = getSquareColor(row, col);
+    square.style.backgroundColor = getGradientColor(row, col);
     document.body.appendChild(square);
   }
 }
